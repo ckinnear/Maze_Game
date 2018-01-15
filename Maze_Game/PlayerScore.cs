@@ -17,7 +17,19 @@ namespace Maze_Game
         //Method to calculate stats:
         public ScoreBoardStats CalculateScoreBoardStats()
         {
-            return new ScoreBoardStats();
+            ScoreBoardStats stats = new ScoreBoardStats();
+
+            //Calculate the Average, Highest & Lowest stats:
+            int sum = 0;
+            foreach (int score in scores)
+            {
+                stats.HighestScore = Math.Max(score, stats.HighestScore); //Highest calculated 
+                stats.LowestScore = Math.Min(score, stats.LowestScore); //Lowest calculated
+                sum += score;
+            }
+            stats.AverageScore = sum / scores.Count; // Average calculated 
+
+            return stats;
         }
 
 
