@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Maze_Game
 {
-    class PlayerScore //Class to store scores & calculate Scoreboard Stats
+    // Changing PlayerScore class to public so that the Scores.Test Project can access it: 
+    public class PlayerScore //Class to store scores & calculate Scoreboard Stats
     {
         //Constructor to initilise scores list:
         public PlayerScore()
@@ -40,7 +41,7 @@ namespace Maze_Game
         }
 
         //List to hold scores:
-        public List<int> scores;
+        private List<int> scores;
 
     }
 }

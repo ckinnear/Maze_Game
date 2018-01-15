@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maze_Game
 {
-    class ScoreBoardStats // Class to hold calculated scoreboard stats
+    public class ScoreBoardStats // Class to hold calculated scoreboard stats
     {
 
         //Initialise scoreboard stats values:

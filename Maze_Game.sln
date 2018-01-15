@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maze_Game", "Maze_Game\Maze_Game.csproj", "{F3671DE9-5F16-432C-A3A9-C74BAA79E450}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scores.Tests", "Scores.Tests\Scores.Tests.csproj", "{B6BAB18C-4FF5-43A6-A840-E644FAB4B556}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F3671DE9-5F16-432C-A3A9-C74BAA79E450}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3671DE9-5F16-432C-A3A9-C74BAA79E450}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3671DE9-5F16-432C-A3A9-C74BAA79E450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6BAB18C-4FF5-43A6-A840-E644FAB4B556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BAB18C-4FF5-43A6-A840-E644FAB4B556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BAB18C-4FF5-43A6-A840-E644FAB4B556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BAB18C-4FF5-43A6-A840-E644FAB4B556}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
