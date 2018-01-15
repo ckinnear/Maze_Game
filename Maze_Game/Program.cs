@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Speech.Synthesis; //Needed for SpeechSynthesizer
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,10 @@ namespace Maze_Game
     {
         static void Main(string[] args)
         {
+
+            //Added System.Speech Assembly reference to use the following:
+            SpeechSynthesizer synth = new SpeechSynthesizer();
+            synth.Speak("Welcome to the Maze");
 
             Console.WriteLine("Welcome to the Maze!");
 
