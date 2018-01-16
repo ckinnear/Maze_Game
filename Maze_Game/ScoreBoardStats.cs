@@ -13,13 +13,13 @@ namespace Maze_Game
         public ScoreBoardStats()
         {
             HighestScore = 0;
-            LowestScore = int.MaxValue;
+            LowestScore = float.MaxValue;
         }
         
         //Scoreboard stats:
-        public int HighestScore;
-        public int LowestScore;
-        public int AverageScore;
+        public float HighestScore;
+        public float LowestScore;
+        public float AverageScore;
 
     }
 }

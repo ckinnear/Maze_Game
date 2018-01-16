@@ -12,7 +12,7 @@ namespace Maze_Game
         //Constructor to initilise scores list:
         public PlayerScore()
         {
-            scores = new List<int>();
+            scores = new List<float>();
         }
 
         //Method to calculate stats:
@@ -21,8 +21,8 @@ namespace Maze_Game
             ScoreBoardStats stats = new ScoreBoardStats();
 
             //Calculate the Average, Highest & Lowest stats:
-            int sum = 0;
-            foreach (int score in scores)
+            float sum = 0;
+            foreach (float score in scores)
             {
                 stats.HighestScore = Math.Max(score, stats.HighestScore); //Highest calculated 
                 stats.LowestScore = Math.Min(score, stats.LowestScore); //Lowest calculated
@@ -35,13 +35,13 @@ namespace Maze_Game
 
 
         //Method to add Scores to a list:
-        public void AddScores(int score)
+        public void AddScores(float score)
         {
             scores.Add(score);
         }
 
         //List to hold scores:
-        private List<int> scores;
+        private List<float> scores;
 
     }
 }
