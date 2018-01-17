@@ -23,17 +23,23 @@ namespace Maze_Game
 
             //Add scores to the list:
             result.AddScores(8);
-            result.AddScores(5);
-            result.AddScores(2);
+            result.AddScores(10);
+            result.AddScores(1);
 
             //Assign calculated results to ScoreBoardStats class:
-            ScoreBoardStats playerstats = result.CalculateScoreBoardStats(); 
+            ScoreBoardStats playerStats = result.CalculateScoreBoardStats();
 
             //Display results:
-            Console.WriteLine("The Highest Score is: {0}", playerstats.HighestScore);
-            Console.WriteLine("The Lowest Score is:  {0}", playerstats.LowestScore);
-            Console.WriteLine("The Average Score is: {0}", playerstats.AverageScore);
+            WriteResult("The Highest Score is: ", playerStats.HighestScore);
+            WriteResult("The Lowest Score is: ", playerStats.LowestScore);
+            WriteResult("The Average Score is: ", playerStats.AverageScore);
 
+        }
+
+        //Method to Display results:
+        static void WriteResult(string description, float statsResult) 
+        {
+            Console.WriteLine($"{description} : {statsResult:F2}"); //F2 rounds to 2 decimal points
         }
     }
 }
