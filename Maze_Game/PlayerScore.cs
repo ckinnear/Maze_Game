@@ -67,8 +67,11 @@ namespace Maze_Game
 
         }
 
+        
         //Made this delegate an event so that the user cannot wipe out subscribers with "null"
         public event NameChangedDelgate NameChanged; //field of type NameChangedDelegate
+
+
 
         private string _name;
         //List to hold scores:

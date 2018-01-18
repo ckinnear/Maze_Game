@@ -16,7 +16,8 @@ namespace Maze_Game
             //Added System.Speech Assembly reference to use the following:
             SpeechSynthesizer synth = new SpeechSynthesizer();
             synth.Speak("Welcome to the Maze");
-
+            
+            //Output text Greeting:
             Console.WriteLine("Welcome to the Maze!");
 
             //Create an instance of the PlayerScore class:
@@ -26,8 +27,6 @@ namespace Maze_Game
             result.NameChanged += OnNameChanged;
             
             result.Name = "Player 1";
-            result.Name = "Player 2";
-
 
             //Add scores to the list:
             result.AddScores(8);
@@ -41,11 +40,11 @@ namespace Maze_Game
             WriteResult("The Highest Score is: ", playerStats.HighestScore);
             WriteResult("The Lowest Score is: ", playerStats.LowestScore);
             WriteResult("The Average Score is: ", playerStats.AverageScore);
-
-
+            //Display the players Skill level:
+            WriteResult("Your Skill Level is: ", playerStats.PlayerSkill);  
 
         }
-        
+
         //Change the Method arguments to use NameChangedEventArgs: 
         static void OnNameChanged(object sender, NameChangedEventArgs args) 
         {
@@ -57,6 +56,12 @@ namespace Maze_Game
         static void WriteResult(string description, float statsResult) 
         {
             Console.WriteLine($"{description} : {statsResult:F2}"); //F2 rounds to 2 decimal points
+        }
+
+        //Method to Display the user skill rating:
+        static void WriteResult(string description, string statsResult)
+        {
+            Console.WriteLine($"{description} : {statsResult}"); 
         }
     }
 }

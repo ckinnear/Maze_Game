@@ -15,6 +15,34 @@ namespace Maze_Game
             HighestScore = 0;
             LowestScore = float.MaxValue;
         }
+
+        //Rate players calculated Skill
+        public string PlayerSkill
+        {
+            get
+            {
+                string result;
+
+                if (HighestScore <= 3)
+                {
+                    result = "Beginner";
+                }
+                else if (HighestScore <= 6)
+                {
+                    result = "Intermediate";
+                }
+                else if (HighestScore <= 9)
+                {
+                    result = "Expert";
+                }
+                else
+                {
+                    result = "Master";
+                }
+                return result;
+            }
+
+        }
         
         //Scoreboard stats:
         public float HighestScore;
