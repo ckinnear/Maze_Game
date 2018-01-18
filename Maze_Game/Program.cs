@@ -22,11 +22,9 @@ namespace Maze_Game
             //Create an instance of the PlayerScore class:
             PlayerScore result = new PlayerScore();
 
-            //Make a new instance of the NameChangedDelegate and reference the OnNameChanged method
-            result.NameChanged = new NameChangedDelgate(OnNameChanged);
-            //you can call multiple methods, using += doesnt remove the first call it just adds to it instead
-            result.NameChanged += new NameChangedDelgate(OnNameChanged2);
-
+            //Using the event delegte:
+            result.NameChanged += OnNameChanged;
+            
             result.Name = "Player 1";
             result.Name = "Player 2";
 
@@ -47,20 +45,14 @@ namespace Maze_Game
 
 
         }
-
-        //this method has the same signature as the Delegate so it can be referenced by the delegate
-        static void OnNameChanged(string existingName, string newName) 
+        
+        //Change the Method arguments to use NameChangedEventArgs: 
+        static void OnNameChanged(object sender, NameChangedEventArgs args) 
         {
-            Console.WriteLine($"Player Score changing name from {existingName} to {newName}");
-
+            Console.WriteLine($"Player Score changing name from {args.ExistingName} to {args.NewName}");
         }
 
-        //Second Method to show that delegates can call multiple methods
-        static void OnNameChanged2(string existingName, string newName)
-        {
-            Console.WriteLine("***");
 
-        }
         //Method to Display results:
         static void WriteResult(string description, float statsResult) 
         {

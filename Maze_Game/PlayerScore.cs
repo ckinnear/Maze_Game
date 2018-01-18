@@ -52,8 +52,12 @@ namespace Maze_Game
                 {
                     if (_name != value)// if the name changed invoke the delegate:
                     {
-                        NameChanged(_name, value); 
-
+                        //Create a NameChangedEventArgs instance:
+                        NameChangedEventArgs args = new NameChangedEventArgs();
+                        args.ExistingName = _name;
+                        args.NewName = value; 
+                        NameChanged(this, args);
+                        //"this" will pass in the current PlayerScore object that we are in
                     }
 
                     _name = value;
@@ -63,8 +67,8 @@ namespace Maze_Game
 
         }
 
-
-        public NameChangedDelgate NameChanged; //field of type NameChangedDelegate
+        //Made this delegate an event so that the user cannot wipe out subscribers with "null"
+        public event NameChangedDelgate NameChanged; //field of type NameChangedDelegate
 
         private string _name;
         //List to hold scores:

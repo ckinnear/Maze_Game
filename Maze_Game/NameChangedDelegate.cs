@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Maze_Game
 {
-
-    public delegate void NameChangedDelgate(string existingName, string newName);
+    //Delegate type created for changes to name string 
+    public delegate void NameChangedDelgate(object sender, NameChangedEventArgs args );
+    // object sender allows you to pass in any type 
 
 }

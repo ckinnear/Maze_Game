@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NameChangedDelegate.cs" />
+    <Compile Include="NameChangedEventArgs.cs" />
     <Compile Include="PlayerScore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
