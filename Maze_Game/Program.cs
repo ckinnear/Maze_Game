@@ -25,8 +25,22 @@ namespace Maze_Game
 
             //Using the event delegte:
             result.NameChanged += OnNameChanged;
-            
-            result.Name = "Player 1";
+
+            //Handling the exception if the user leaves the Name empty
+            bool correctNameInput = false;
+            while (correctNameInput == false)
+            {
+                try
+                {
+                    Console.WriteLine("Please Enter Your Name: ");
+                    result.Name = Console.ReadLine();
+                    correctNameInput = true;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             //Add scores to the list:
             result.AddScores(8);

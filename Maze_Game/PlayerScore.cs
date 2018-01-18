@@ -48,8 +48,11 @@ namespace Maze_Game
 
             set
             {
-                if (!String.IsNullOrEmpty(value))
+                //Changed to throw an exception: 
+                if (string.IsNullOrEmpty(value))
                 {
+                    throw new ArgumentException("Name cannot be null or empty");
+                }
                     if (_name != value)// if the name changed invoke the delegate:
                     {
                         //Create a NameChangedEventArgs instance:
@@ -62,7 +65,7 @@ namespace Maze_Game
 
                     _name = value;
 
-                }
+                
             }
 
         }
