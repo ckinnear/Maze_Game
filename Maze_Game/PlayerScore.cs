@@ -12,6 +12,7 @@ namespace Maze_Game
         //Constructor to initilise scores list:
         public PlayerScore()
         {
+            _name = "Empty"; // initializing _name for Delegate 
             scores = new List<float>();
         }
 
@@ -40,6 +41,32 @@ namespace Maze_Game
             scores.Add(score);
         }
 
+
+        public string Name
+        {
+            get { return _name; }
+
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    if (_name != value)// if the name changed invoke the delegate:
+                    {
+                        NameChanged(_name, value); 
+
+                    }
+
+                    _name = value;
+
+                }
+            }
+
+        }
+
+
+        public NameChangedDelgate NameChanged; //field of type NameChangedDelegate
+
+        private string _name;
         //List to hold scores:
         private List<float> scores;
 
