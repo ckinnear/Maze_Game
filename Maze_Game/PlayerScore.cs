@@ -53,10 +53,13 @@ namespace Maze_Game
                 {
                     throw new ArgumentException("Name cannot be null or empty");
                 }
-                    if (_name != value)// if the name changed invoke the delegate:
+                    // if the name changed invoke the delegate:
+                    if (_name != value && NameChanged != null)
+                    //"NameChanged != null" makes sure theirs no NullReference 
+                    // Exception in the case of no subscriptions to NameChangedDelegate event 
                     {
-                        //Create a NameChangedEventArgs instance:
-                        NameChangedEventArgs args = new NameChangedEventArgs();
+                    //Create a NameChangedEventArgs instance:
+                    NameChangedEventArgs args = new NameChangedEventArgs();
                         args.ExistingName = _name;
                         args.NewName = value; 
                         NameChanged(this, args);

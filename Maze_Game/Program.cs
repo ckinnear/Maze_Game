@@ -39,6 +39,7 @@ namespace Maze_Game
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
+                    //Console.WriteLine(ex.StackTrace); //shows the stack trace as well
                 }
             }
 
