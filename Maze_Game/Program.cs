@@ -15,12 +15,10 @@ namespace Maze_Game
             //Added System.Speech Assembly reference to use the following:
             SpeechSynthesizer synth = new SpeechSynthesizer();
             synth.Speak("Welcome to the Maze");
-
             //Output text Greeting:
             Console.WriteLine("Welcome to the Maze!");
 
-            //Create an instance of the PlayerScore class:
-            PlayerScore result = new PlayerScore();
+            ScoreTracker result = CreatePlayerScore();
 
             //Using the event delegte:
             result.NameChanged += OnNameChanged;
@@ -32,7 +30,14 @@ namespace Maze_Game
 
         }
 
-        private static void WriteResults(PlayerScore result)
+        private static ScoreTracker CreatePlayerScore()
+        {
+            //changed to instantiate the derived class, ThrowAwayPLayerScore()
+            //which throws away the lowest score before calculating the Score Board Stats
+            return new ThrowAwayPlayerScore();
+        }
+
+        private static void WriteResults(ScoreTracker result)
         {
             //Assign calculated results to ScoreBoardStats class:
             ScoreBoardStats playerStats = result.CalculateScoreBoardStats();
@@ -44,7 +49,7 @@ namespace Maze_Game
             WriteResult("Your Skill Level is: ", playerStats.PlayerSkill);
         }
 
-        private static void SaveScores(PlayerScore result)
+        private static void SaveScores(ScoreTracker result)
         {
         //File returns object StreamWriter which is compatible with TextWriter that WriteGrades expects.
         //Wrap in using {} so that the complier sets up a try, finally to make sure all resources are closed
@@ -53,9 +58,10 @@ namespace Maze_Game
             {
                 result.WriteGrades(outputFile);
             }
+
         }
 
-        private static void AddPlayerScores(PlayerScore result)
+        private static void AddPlayerScores(ScoreTracker result)
         {
             //Add scores to the list:
             result.AddScores(8);
@@ -63,7 +69,7 @@ namespace Maze_Game
             result.AddScores(1);
         }
 
-        private static void GetPlayerName(PlayerScore result)
+        private static void GetPlayerName(ScoreTracker result)
         {
             //Handling the exception if the user leaves the Name empty
             bool correctNameInput = false;

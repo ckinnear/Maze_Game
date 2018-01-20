@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maze_Game
+namespace Maze_Game 
 {
     // Changing PlayerScore class to public so that the Scores.Test Project can access it: 
-    public class PlayerScore //Class to store scores & calculate Scoreboard Stats
-    {
+ public class PlayerScore : ScoreTracker //Class to store scores & calculate Scoreboard Stats
+{
         //Constructor to initilise scores list:
         public PlayerScore()
         {
@@ -18,7 +18,8 @@ namespace Maze_Game
         }
 
         //Method to calculate stats:
-        public ScoreBoardStats CalculateScoreBoardStats()
+        public override ScoreBoardStats CalculateScoreBoardStats()
+        //made virtual so that derived class (ThrowAwayPlayerScore) can change method
         {
             ScoreBoardStats stats = new ScoreBoardStats();
 
@@ -35,12 +36,12 @@ namespace Maze_Game
             return stats;
         }
 
-        public void WriteGrades(TextWriter destination) 
+        public override void WriteGrades(TextWriter destination) 
         // Added using System.IO for TextWritter
         {
             for (int i = scores.Count; i > 0; i --)
             {
-                destination.WriteLine(scores[i-1]);
+                destination.WriteLine($"Player Scores: {scores[i-1]}");
 
             }
                
@@ -48,52 +49,13 @@ namespace Maze_Game
 
 
         //Method to add Scores to a list:
-        public void AddScores(float score)
+        public override void AddScores(float score)
         {
             scores.Add(score);
         }
 
-
-        public string Name
-        {
-            get { return _name; }
-
-            set
-            {
-                //Changed to throw an exception: 
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Name cannot be null or empty");
-                }
-                    // if the name changed invoke the delegate:
-                    if (_name != value && NameChanged != null)
-                    //"NameChanged != null" makes sure theirs no NullReference 
-                    // Exception in the case of no subscriptions to NameChangedDelegate event 
-                    {
-                    //Create a NameChangedEventArgs instance:
-                    NameChangedEventArgs args = new NameChangedEventArgs();
-                        args.ExistingName = _name;
-                        args.NewName = value; 
-                        NameChanged(this, args);
-                        //"this" will pass in the current PlayerScore object that we are in
-                    }
-
-                    _name = value;
-
-                
-            }
-
-        }
-
-        
-        //Made this delegate an event so that the user cannot wipe out subscribers with "null"
-        public event NameChangedDelgate NameChanged; //field of type NameChangedDelegate
-
-
-
-        private string _name;
         //List to hold scores:
-        private List<float> scores;
-
+        // change to protected so that inherited class can access it
+        protected List<float> scores;
     }
 }
