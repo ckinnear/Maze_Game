@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic; // needed for List
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,17 @@ namespace Maze_Game
             stats.AverageScore = sum / scores.Count; // Average calculated 
 
             return stats;
+        }
+
+        public void WriteGrades(TextWriter destination) 
+        // Added using System.IO for TextWritter
+        {
+            for (int i = scores.Count; i > 0; i --)
+            {
+                destination.WriteLine(scores[i-1]);
+
+            }
+               
         }
 
 
