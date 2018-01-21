@@ -18,7 +18,7 @@ namespace Maze_Game
             //Output text Greeting:
             Console.WriteLine("Welcome to the Maze!");
 
-            ScoreTracker result = CreatePlayerScore();
+            IScoreTracker result = CreatePlayerScore();
 
             //Using the event delegte:
             result.NameChanged += OnNameChanged;
@@ -30,14 +30,14 @@ namespace Maze_Game
 
         }
 
-        private static ScoreTracker CreatePlayerScore()
+        private static IScoreTracker CreatePlayerScore()
         {
             //changed to instantiate the derived class, ThrowAwayPLayerScore()
             //which throws away the lowest score before calculating the Score Board Stats
             return new ThrowAwayPlayerScore();
         }
 
-        private static void WriteResults(ScoreTracker result)
+        private static void WriteResults(IScoreTracker result)
         {
             //Assign calculated results to ScoreBoardStats class:
             ScoreBoardStats playerStats = result.CalculateScoreBoardStats();
@@ -49,7 +49,7 @@ namespace Maze_Game
             WriteResult("Your Skill Level is: ", playerStats.PlayerSkill);
         }
 
-        private static void SaveScores(ScoreTracker result)
+        private static void SaveScores(IScoreTracker result)
         {
         //File returns object StreamWriter which is compatible with TextWriter that WriteGrades expects.
         //Wrap in using {} so that the complier sets up a try, finally to make sure all resources are closed
@@ -61,7 +61,7 @@ namespace Maze_Game
 
         }
 
-        private static void AddPlayerScores(ScoreTracker result)
+        private static void AddPlayerScores(IScoreTracker result)
         {
             //Add scores to the list:
             result.AddScores(8);
@@ -69,7 +69,7 @@ namespace Maze_Game
             result.AddScores(1);
         }
 
-        private static void GetPlayerName(ScoreTracker result)
+        private static void GetPlayerName(IScoreTracker result)
         {
             //Handling the exception if the user leaves the Name empty
             bool correctNameInput = false;

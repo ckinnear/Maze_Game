@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Maze_Game
 {
     //Added ScoreTracker as an abstract base class:
-    public abstract class ScoreTracker
+    public abstract class ScoreTracker : IScoreTracker
     {
         //The following methods need to be defined by inherited classes:
         public abstract void AddScores(float score);
