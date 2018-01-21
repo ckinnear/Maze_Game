@@ -15,19 +15,77 @@ namespace Maze_Game
             //Added System.Speech Assembly reference to use the following:
             SpeechSynthesizer synth = new SpeechSynthesizer();
             synth.Speak("Welcome to the Maze");
-            //Output text Greeting:
-            Console.WriteLine("Welcome to the Maze!");
 
+            //Output text Greeting:
+            Console.WriteLine("Welcome to the Maze!\n");
+            
+            //IScoreTracker is a n interface to keep track of users scores
             IScoreTracker result = CreatePlayerScore();
 
-            //Using the event delegte:
+            //Using the event delegte to listen to name change and print message when it does
             result.NameChanged += OnNameChanged;
-
+            
+            //Ask for the Players Name:
             GetPlayerName(result);
-            AddPlayerScores(result);
-            SaveScores(result);
-            WriteResults(result);
+            //Display the Game Menu:
+            DisplayMenu();
+            //Handle Players Menu choice
+            HandlePlayerChoice(result);
+            //
 
+        }
+
+        private static void HandlePlayerChoice(IScoreTracker result)
+        {
+            //Handling the exception if the user adds incorrect entry:
+            bool correctMenuInput = false;
+            while (correctMenuInput == false)
+            {
+                try
+                {
+                    Console.WriteLine("Choose an Option");
+                    result.MenuChoice = Console.ReadLine();
+                    correctMenuInput = true;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            switch (result.MenuChoice)
+            {
+                case "1":
+                    float noOfTurns = Maze();
+                    AddPlayerScores(result, noOfTurns);
+                    SaveScores(result);
+                    DisplayMenu();
+                    HandlePlayerChoice(result);
+                    break;
+                case "2":
+                    WriteResults(result);
+                    DisplayMenu();
+                    HandlePlayerChoice(result);
+                    break;
+                case "3":
+                    Console.WriteLine("THANKS FOR PLAYING, GOODBYE");
+                    Environment.Exit(0);
+                    break;
+            }
+        }
+
+        private static float Maze()
+        {
+            IMaze maze = new FirstMaze();
+            float noOfTurns = maze.MazePath();
+            return noOfTurns;
+        }
+
+        private static void DisplayMenu()
+        {
+            //Menu
+            Console.WriteLine("1.Play Game");
+            Console.WriteLine("2.View Scores");
+            Console.WriteLine("3.Quit");
         }
 
         private static IScoreTracker CreatePlayerScore()
@@ -56,17 +114,17 @@ namespace Maze_Game
         //for example outputFile.Close();
             using (StreamWriter outputFile = File.CreateText("scores.txt")) // Added using System.IO
             {
-                result.WriteGrades(outputFile);
+                result.WriteScores(outputFile);
             }
 
         }
 
-        private static void AddPlayerScores(IScoreTracker result)
+        private static void AddPlayerScores(IScoreTracker result, float noOfTurns)
         {
             //Add scores to the list:
-            result.AddScores(8);
-            result.AddScores(10);
-            result.AddScores(1);
+            result.AddScores(noOfTurns);
+            result.AddScores(noOfTurns);
+
         }
 
         private static void GetPlayerName(IScoreTracker result)
@@ -78,7 +136,7 @@ namespace Maze_Game
                 try
                 {
                     Console.WriteLine("Please Enter Your Name: ");
-                    result.Name = Console.ReadLine();
+                    result.PlayerName = Console.ReadLine();
                     correctNameInput = true;
                 }
                 catch (ArgumentException ex)
@@ -92,7 +150,7 @@ namespace Maze_Game
         //Change the Method arguments to use NameChangedEventArgs: 
         static void OnNameChanged(object sender, NameChangedEventArgs args) 
         {
-            Console.WriteLine($"Player Score changing name from {args.ExistingName} to {args.NewName}");
+            Console.WriteLine($"Hello {args.NewName}, Best Of Luck in the Maze!\n");
         }
 
 

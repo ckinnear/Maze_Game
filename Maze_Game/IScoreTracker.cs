@@ -7,9 +7,10 @@ namespace Maze_Game
     {
         void AddScores(float score);
         ScoreBoardStats CalculateScoreBoardStats();
-        void WriteGrades(TextWriter destination);
-        string Name { get; set;}
-        event NameChangedDelgate NameChanged; //field of type NameChangedDelegate
+        void WriteScores(TextWriter destination);
+        string PlayerName { get; set;}
+        string MenuChoice { get; set; }
+        event NameChangedDelgate NameChanged;
 
     }
 }

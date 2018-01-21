@@ -36,7 +36,7 @@ namespace Maze_Game
             return stats;
         }
 
-        public override void WriteGrades(TextWriter destination) 
+        public override void WriteScores(TextWriter destination) 
         // Added using System.IO for TextWritter
         {
             for (int i = scores.Count; i > 0; i --)

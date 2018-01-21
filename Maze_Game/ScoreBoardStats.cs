@@ -23,17 +23,13 @@ namespace Maze_Game
             {
                 string result;
 
-                if (HighestScore <= 3)
+                if (HighestScore <= 2)
                 {
                     result = "Beginner";
                 }
-                else if (HighestScore <= 6)
+                else if (HighestScore <= 4)
                 {
                     result = "Intermediate";
-                }
-                else if (HighestScore <= 9)
-                {
-                    result = "Expert";
                 }
                 else
                 {

@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstMaze.cs" />
     <Compile Include="IScoreTracker.cs" />
+    <Compile Include="IMaze.cs" />
+    <Compile Include="Maze.cs" />
     <Compile Include="NameChangedDelegate.cs" />
     <Compile Include="NameChangedEventArgs.cs" />
     <Compile Include="PlayerScore.cs" />

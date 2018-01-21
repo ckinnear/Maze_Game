@@ -13,10 +13,10 @@ namespace Maze_Game
         //The following methods need to be defined by inherited classes:
         public abstract void AddScores(float score);
         public abstract ScoreBoardStats CalculateScoreBoardStats();
-        public abstract void WriteGrades(TextWriter destination);
+        public abstract void WriteScores(TextWriter destination);
 
         //The following do not need to be defined by inherited classes:
-        public string Name
+        public string PlayerName
         {
             get { return _name; }
 
@@ -41,16 +41,33 @@ namespace Maze_Game
                 }
 
                 _name = value;
+                
+            }
+        }
 
+        public string MenuChoice
+        {
+            get { return _menuchoice; }
 
+            set
+            {
+                //Changed to throw an exception: 
+                if ((string.IsNullOrEmpty(value)) || (int.Parse(value) > 3 ) )
+                {
+                    throw new ArgumentException("Please enter a correct choice");
+                }
+
+                _menuchoice = value;
             }
 
         }
+             
 
         //Made this delegate an event so that the user cannot wipe out subscribers with "null"
         public event NameChangedDelgate NameChanged; //field of type NameChangedDelegate
 
         protected string _name;//changed to protected 
+        protected string _menuchoice;
 
     }
 }
